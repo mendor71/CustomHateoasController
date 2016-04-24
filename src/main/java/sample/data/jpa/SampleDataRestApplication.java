@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-
-
 package sample.data.jpa;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -59,21 +56,22 @@ public class SampleDataRestApplication implements CommandLineRunner{
 
 	// TODO @Override
 	public void run(String... args) throws Exception {
-		
-		this.attractions.deleteAll();
 
-		this.accountRepository.deleteAll();
-		this.accountRepository.save(new Account("egor", "1234"));
+	this.accountRepository.deleteAll();
+	this.accountRepository.save(new Account("egor", "1234"));
+		
+/*	EGOR 24 apr 2016	this.attractions.deleteAll();
+
 
 		// save a couple of customers
-		this.attractions.save(new Attractions("БигБен", "БИГБЕН"));//как в конструкторе класса Attractions
-		this.attractions.save(new Attractions("Мост", "Мост1"));
-		this.attractions.save(new Attractions("Башня", "Башня1"));
+		this.attractions.save(new Attractions("BigBen", "BIGBEN"));//как в конструкторе класса Attractions
+		this.attractions.save(new Attractions("Bridge", "Bridge1"));
+		this.attractions.save(new Attractions("Tower", "Tower1"));
 
-		this.city.save(new City("Атланта", "США", "33.7489, -84.3879", "GA"));
+		this.city.save(new City("Атланта", "USA", "33.7489, -84.3879", "GA"));
 		this.city.save(new City("Atlanta", "USA", "33.7489, -84.3879", "GA"));
 
-		this.customer.save(new Customer("Alice", "Smith"));
+		this.customer.save(new Customer("Alice", "Smith"));*/
 
 /*		System.out.println("Account user");
 		Account a = accountRepository.findByUsername("egor");

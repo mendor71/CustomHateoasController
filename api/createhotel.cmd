@@ -1,0 +1,1 @@
+curl -i -X POST -H "Content-Type:application/json" -d "{ \"city\" : \"http://localhost:8080/cities/2\", \"name\" : \"Hayatt\", \"address\" : \"tt\", \"zip\" : \"123456\" }" http://localhost:8080/hotels
