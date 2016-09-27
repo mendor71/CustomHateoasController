@@ -2,7 +2,6 @@ package sample.data.jpa.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -13,7 +12,7 @@ public class Attractions implements Serializable {
 	public static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	public Long id;
 
 	@Column(nullable = false)
@@ -25,8 +24,9 @@ public class Attractions implements Serializable {
 	protected Attractions() {
 	}
 
-	public Attractions(String name, String description) {
+	public Attractions(long id, String name, String description) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.description =description;
 	}
@@ -47,6 +47,14 @@ public class Attractions implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String toString() {

@@ -2,12 +2,13 @@ package sample.data.jpa.persistence;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import sample.data.jpa.domain.Attractions;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class QueryTester {
 
@@ -16,11 +17,26 @@ public class QueryTester {
 
         EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory(unitName);
+
         EntityManager em = emf.createEntityManager();
-        BufferedReader reader =
-                new BufferedReader(new InputStreamReader(System.in));
+        /*BufferedReader reader =
+                new BufferedReader(new InputStreamReader(System.in));*/
 
+        em.getTransaction().begin();
+        Attractions attractions = new Attractions(2, "2_test_attraction", "2 the best attraction");
+        em.persist(attractions);
+        em.getTransaction().commit();
 
+        TypedQuery<Attractions> tQ = em.createQuery("Select a from Attractions a" , Attractions.class);
+        List<Attractions> attList = tQ.getResultList();
+
+        for (Attractions a: attList) {
+            System.out.println(a);
+        }
+        em.close();
+        emf.close();
+
+/*
         EmployeeService eService = new EmployeeService(em);
 
         em.getTransaction().begin();
@@ -34,7 +50,7 @@ public class QueryTester {
         em.getTransaction().commit();
 
         long salary = empl.getSalary();
-        System.out.println("raised for " + salary);
+        System.out.println("raised for " + salary);*/
 
         /*for (; ; ) {
             System.out.print("JP QL> ");
