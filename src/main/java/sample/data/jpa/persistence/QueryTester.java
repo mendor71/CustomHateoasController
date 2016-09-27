@@ -2,12 +2,11 @@ package sample.data.jpa.persistence;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import sample.data.jpa.domain.Attractions;
+import sample.data.jpa.domain.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class QueryTester {
@@ -22,7 +21,14 @@ public class QueryTester {
         /*BufferedReader reader =
                 new BufferedReader(new InputStreamReader(System.in));*/
 
-        em.getTransaction().begin();
+        List<User> userList = em.createQuery("select distinct u from User u where u.roles in (select r from Role r where r.name in ('ROLE_ADMIN', 'ROLE_USER'))", User.class).getResultList();
+
+        for (User u: userList) {
+            System.out.println(u.toString());
+        }
+
+
+        /*em.getTransaction().begin();
         Attractions attractions = new Attractions(2, "2_test_attraction", "2 the best attraction");
         em.persist(attractions);
         em.getTransaction().commit();
@@ -34,7 +40,7 @@ public class QueryTester {
             System.out.println(a);
         }
         em.close();
-        emf.close();
+        emf.close();*/
 
 /*
         EmployeeService eService = new EmployeeService(em);
