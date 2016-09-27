@@ -28,11 +28,9 @@ public class Hotel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(optional = false)
-	@NaturalId
+	@ManyToOne(targetEntity = City.class)
 	private City city;
 
 	@Column(nullable = false)
@@ -42,13 +40,14 @@ public class Hotel implements Serializable {
 	@Column(nullable = false)
 	private String address;
 
-	@Column(nullable = false)
 	private String zip;
 
 	protected Hotel() {
 	}
 
-	public Hotel(City city, String name) {
+	public Hotel(long id, String name, String address, City city) {
+		this.id = id;
+		this.address = address;
 		this.city = city;
 		this.name = name;
 	}
@@ -90,4 +89,6 @@ public class Hotel implements Serializable {
 	public String getZip() {
 		return this.zip;
 	}
+
+
 }

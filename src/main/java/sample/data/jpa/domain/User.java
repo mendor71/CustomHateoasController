@@ -25,6 +25,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "User.findByRole", query = "select distinct u from User u where u.roles in (select r from Role r where r.name = :role)"),
+		@NamedQuery(name = "User.findByLogin", query = "select distinct u from User u where u.login = :login")
+})
 public class User {
 
 	@Id
@@ -105,7 +109,7 @@ public class User {
 				", name='" + name + '\'' +
 				", login='" + login + '\'' +
 				", password='" + password + '\'' +
-				", roles=" + roles +
+				", roles=" + roles.toString() +
 				'}';
 	}
 }

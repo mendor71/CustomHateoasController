@@ -16,20 +16,16 @@
 
 package sample.data.jpa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 //construct city @Entity
 @Entity
 public class City implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue
 	public Long id;
 
 	@Column(nullable = false)
@@ -47,11 +43,15 @@ public class City implements Serializable {
 	@Column(nullable = false)
 	public Long index;
 
+	@OneToMany(targetEntity=Hotel.class, mappedBy="city")
+	public List<Hotel> hotels = new ArrayList<>();
+
 	protected City() {
 	}
 
-	public City(String name, String country, String map, String state, Long index) {
+	public City(long id, String name, String country, String map, String state, Long index) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.country = country;
 		this.map = map;
@@ -59,9 +59,9 @@ public class City implements Serializable {
 		this.index = index;
 	}
 
-	public String toString() {
+/*	public String toString() {
 		return "sample.data.jpa.domain.City(name=" + this.name + ", state=" + this.state + ", country=" + this.country + ", map=" + this.map + ", index=" + this.index + ")";
-	}
+	}*/
 
 	//setters city's fields
 	public void setName(String name) {
@@ -101,5 +101,25 @@ public class City implements Serializable {
 
 	public Long getIndex() {
 		return this.index;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Hotel> getHotels() {
+		return hotels;
+	}
+
+	public void setHotels(List<Hotel> hotels) {
+		this.hotels = hotels;
+	}
+
+	public void addHotel(Hotel hotel) {
+		this.hotels.add(hotel);
 	}
 }

@@ -28,6 +28,9 @@ import sample.data.jpa.service.*;
 public class SampleDataRestApplication implements CommandLineRunner{
 
 	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
 	private AccountRepository accountRepository;
 
 	@Autowired
@@ -50,7 +53,6 @@ public class SampleDataRestApplication implements CommandLineRunner{
 
 	// TODO @Override
 	public void run(String... args) throws Exception {
-
 		this.accountRepository.deleteAll();
 		this.accountRepository.save(new Account("egor",   "1234", "ROLE_USER, ROLE_ADMIN", true, true, true, true));
 		this.accountRepository.save(new Account("akleyn", "1234", "ROLE_ADMIN", true, true, true, true));

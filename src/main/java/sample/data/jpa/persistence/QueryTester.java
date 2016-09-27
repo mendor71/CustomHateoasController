@@ -2,32 +2,64 @@ package sample.data.jpa.persistence;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import sample.data.jpa.domain.User;
+import sample.data.jpa.concrete.CityHotelService;
+import sample.data.jpa.domain.City;
+import sample.data.jpa.domain.Hotel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
+
 public class QueryTester {
 
     public static void main(String[] args) throws Exception {
         String unitName = args[0];
 
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory(unitName);
-
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(unitName);
         EntityManager em = emf.createEntityManager();
-        /*BufferedReader reader =
-                new BufferedReader(new InputStreamReader(System.in));*/
 
-        List<User> userList = em.createQuery("select distinct u from User u where u.roles in (select r from Role r where r.name in ('ROLE_ADMIN', 'ROLE_USER'))", User.class).getResultList();
+        CityHotelService init = new CityHotelService();
+        init.initialize(em);
 
-        for (User u: userList) {
+        List<City> list = em.createQuery("Select c from City c", City.class).getResultList();
+
+        for (City c: list) {
+            System.out.println(c.getName() + ": ");
+            for (Hotel h: c.getHotels()) {
+                int i = 0;
+                System.out.println(++i + " " + h.getName());
+            }
+        }
+
+        em.close();
+        emf.close();
+
+
+        /*UserService uSrv = new UserService(em);
+
+        uSrv.baseInitializer();
+
+        uSrv.printUsersListByRole("ROLE_USER");
+        uSrv.printUsersListByLogin("craig");*/
+
+        /*List<User> userListByRole = em.createNamedQuery("User.findByRole", User.class).setParameter("role", "ROLE_USER").getResultList();
+
+        System.out.println("BY ROLE:");
+        for (User u: userListByRole) {
             System.out.println(u.toString());
         }
 
+        List userListByLogin = em.createNamedQuery("User.findByLogin").setParameter("login", "craig").getResultList();
 
+        System.out.println("BY LOGIN:");
+        for (Object o: userListByLogin) {
+            System.out.println(o.toString());
+        }*/
+
+        /*BufferedReader reader =
+          new BufferedReader(new InputStreamReader(System.in));*/
         /*em.getTransaction().begin();
         Attractions attractions = new Attractions(2, "2_test_attraction", "2 the best attraction");
         em.persist(attractions);
@@ -42,7 +74,7 @@ public class QueryTester {
         em.close();
         emf.close();*/
 
-/*
+        /*
         EmployeeService eService = new EmployeeService(em);
 
         em.getTransaction().begin();
