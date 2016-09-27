@@ -17,27 +17,12 @@
 package sample.data.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import sample.data.jpa.domain.Account;
+import sample.data.jpa.domain.CoffeeBar;
 import sample.data.jpa.service.*;
-import sample.data.jpa.domain.*;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class SampleDataRestApplication implements CommandLineRunner{
@@ -54,12 +39,24 @@ public class SampleDataRestApplication implements CommandLineRunner{
 	@Autowired
 	private CustomerRepository customer;
 
+	@Autowired
+	private CatsRepository cats;
+
+	@Autowired
+	private DogsRepository dogs;
+
+	@Autowired
+	private CoffeeBarRepository cBarsRepository;
+
 	// TODO @Override
 	public void run(String... args) throws Exception {
 
-	this.accountRepository.deleteAll();
-	this.accountRepository.save(new Account("egor", "1234"));
-		
+		this.accountRepository.deleteAll();
+		this.accountRepository.save(new Account("egor",   "1234", "ROLE_USER, ROLE_ADMIN", true, true, true, true));
+		this.accountRepository.save(new Account("akleyn", "1234", "ROLE_ADMIN", true, true, true, true));
+		this.accountRepository.save(new Account("mike",   "1234", "ROLE_USER", true, true, true, true));
+		this.cBarsRepository.save(new CoffeeBar("bar1", "testStreet", "the best bar"));
+
 /*	EGOR 24 apr 2016	this.attractions.deleteAll();
 
 

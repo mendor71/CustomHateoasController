@@ -21,6 +21,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import java.io.Serializable;
 
+//construct hotel @Entity
 @Entity
 public class Hotel implements Serializable {
 
@@ -56,6 +57,7 @@ public class Hotel implements Serializable {
 		return "sample.data.jpa.domain.Hotel(city=" + this.city + ", name=" + this.name + ", address=" + this.address + ", zip=" + this.zip + ")";
 	}
 
+	//setters hotel's fields
 	public void setCity(City city) {
 		this.city = city;
 	}
@@ -72,6 +74,7 @@ public class Hotel implements Serializable {
 		this.zip = zip;
 	}
 
+	//getters hotel's fields
 	public City getCity() {
 		return this.city;
 	}

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+//construct account #Entity
 @Entity
 public class Attractions implements Serializable {
 
@@ -30,6 +31,7 @@ public class Attractions implements Serializable {
 		this.description =description;
 	}
 
+	//getters attraction's fields
 	public String getName() {
 		return this.name;
 	}
@@ -38,6 +40,7 @@ public class Attractions implements Serializable {
 		return this.description;
 	}
 
+	//setters attraction's fields
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -18,6 +18,7 @@ package sample.data.jpa.domain;
 
 import org.springframework.data.annotation.Id;
 
+//construct customer @Entity
 public class Customer {
 
 	@Id
@@ -34,6 +35,7 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
+	//getters customer's fields
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -42,6 +44,7 @@ public class Customer {
 		return this.lastName;
 	}
 
+	//setters customer's fields
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
