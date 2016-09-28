@@ -20,7 +20,7 @@ public class QueryTester {
         EntityManager em = emf.createEntityManager();
 
         BufferedReader reader =
-          new BufferedReader(new InputStreamReader(System.in));*/
+          new BufferedReader(new InputStreamReader(System.in));
 
         for (; ; ) {
             System.out.print("JP QL> ");
