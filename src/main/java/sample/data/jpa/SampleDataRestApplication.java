@@ -21,7 +21,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import sample.data.jpa.domain.Account;
+import sample.data.jpa.domain.City;
 import sample.data.jpa.domain.CoffeeBar;
+import sample.data.jpa.domain.Hotel;
 import sample.data.jpa.service.*;
 
 @SpringBootApplication
@@ -40,7 +42,11 @@ public class SampleDataRestApplication implements CommandLineRunner{
 	private CityRepository city;
 
 	@Autowired
+	private HotelRepository hotel;
+
+	@Autowired
 	private CustomerRepository customer;
+
 
 	@Autowired
 	private CatsRepository cats;
@@ -58,6 +64,23 @@ public class SampleDataRestApplication implements CommandLineRunner{
 		this.accountRepository.save(new Account("akleyn", "1234", "ROLE_ADMIN", true, true, true, true));
 		this.accountRepository.save(new Account("mike",   "1234", "ROLE_USER", true, true, true, true));
 		this.cBarsRepository.save(new CoffeeBar("bar1", "testStreet", "the best bar"));
+
+		City c1 = new City(1, "city1", "country1", "state1", "map1");
+		City c2 = new City(2, "city2", "country1", "state2", "map1");
+		City c3 = new City(3, "city3", "country2", "state1", "map3");
+		City c4 = new City(4, "city4", "country3", "state1", "map4");
+
+		this.city.save(c1);
+		this.city.save(c2);
+		this.city.save(c3);
+		this.city.save(c4);
+
+		this.hotel.save(new Hotel(1, "hotel1", "addr1", c1));
+		this.hotel.save(new Hotel(2, "hotel2", "addr2", c1));
+		this.hotel.save(new Hotel(3, "hotel3", "addr3", c2));
+		this.hotel.save(new Hotel(4, "hotel4", "addr4", c3));
+
+
 
 /*	EGOR 24 apr 2016	this.attractions.deleteAll();
 

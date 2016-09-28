@@ -20,19 +20,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import sample.data.jpa.domain.City;
 import sample.data.jpa.domain.Hotel;
 
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "hotels", path = "hotels")
-interface HotelRepository extends PagingAndSortingRepository<Hotel, Long> {
+public interface HotelRepository extends PagingAndSortingRepository<Hotel, Long> {
 
 	// find hotels by part of city's name
-	@Query("SELECT h " +
-			"FROM Hotel h JOIN h.city c " +
-			"WHERE " +
-			"LOWER(c.name) LIKE LOWER(CONCAT('%',:cityName, '%'))")
-	public List<City> findByCityName(@Param("cityName") String cityName);
+	@Query("select h from Hotel h join h.city c where lower(c.name) like lower(concat('%',:cityName, '%') )")
+	public List<Hotel> findHotelsByCityName(@Param("cityName") String cityName);
+
+	@Query("select h from Hotel h join h.city c where c.country = :countryName and c.state = :countryState")
+	public List<Hotel> findHotelsByCityNameAndCityState(@Param("countryName") String countryName, @Param("countryState") String countryState);
 
 }
