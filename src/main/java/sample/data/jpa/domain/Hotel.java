@@ -30,7 +30,7 @@ public class Hotel implements Serializable {
 	@Id
 	private Long id;
 
-	@ManyToOne(targetEntity = City.class)
+	@ManyToOne(optional = false)
 	private City city;
 
 	@Column(nullable = false)

@@ -16,111 +16,86 @@
 
 package sample.data.jpa.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//construct city @Entity
 @Entity
 public class City implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	public Long id;
 
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	public String name;
 
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	public String state;
 
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	public String country;
 
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	public String map;
 
-	//@Column(nullable = false)
-	public Long index;
-
-	@OneToMany(targetEntity=Hotel.class, mappedBy="city")
-	public List<Hotel> hotels = new ArrayList<>();
+	@OneToMany(targetEntity = Hotel.class, mappedBy = "city")
+	public List<Hotel> hotels = new ArrayList<Hotel>();
 
 	protected City() {
 	}
 
-	public City(long id, String name, String country, String map, String state, long index) {
-		super();
+	public City(long id, String name, String country, String state, String map) {
 		this.id = id;
 		this.name = name;
 		this.country = country;
 		this.map = map;
 		this.state = state;
-		this.index = index;
+	}
+
+	public void addHotel(Hotel hotel) {
+		this.hotels.add(hotel);
 	}
 
 	public String toString() {
-		return "sample.data.jpa.domain.City(name=" + this.name + ", state=" + this.state + ", country=" + this.country + ", map=" + this.map + ", index=" + this.index + ")";
+		return "City(name=" + this.name + ", state=" + this.state + ", country=" + this.country + ", map=" + this.map + ")";
 	}
 
-	//setters city's fields
+
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getState() {
-		return state;
 	}
 
 	public void setState(String state) {
 		this.state = state;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	public String getMap() {
-		return map;
 	}
 
 	public void setMap(String map) {
 		this.map = map;
 	}
 
-	public Long getIndex() {
-		return index;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setIndex(Long index) {
-		this.index = index;
+	public String getState() {
+		return this.state;
 	}
 
-	public List<Hotel> getHotels() {
-		return hotels;
+	public String getCountry() {
+		return this.country;
 	}
 
-	public void setHotels(List<Hotel> hotels) {
-		this.hotels = hotels;
-	}
-
-	public void addHotel(Hotel hotel) {
-		this.hotels.add(hotel);
+	public String getMap() {
+		return this.map;
 	}
 }
