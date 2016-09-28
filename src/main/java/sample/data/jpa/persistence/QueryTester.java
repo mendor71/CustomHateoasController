@@ -23,8 +23,7 @@ public class QueryTester {
         CityHotelService chs = new CityHotelService();
         chs.initialize(em);
 
-        BufferedReader reader =
-          new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         for (; ; ) {
             System.out.print("JP QL> ");

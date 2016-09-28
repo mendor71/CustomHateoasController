@@ -1,1 +1,1 @@
-curl -v -X POST -H "Content-Type:application/json" -d "{ \"name\" : \"Ekaterinburg\", \"country\" : \"Ural\", \"map\" : \"map\", \"state\" : \"Nevyansk\" }" http://localhost:8080/cities
+curl -v -X POST -H "Content-Type:application/json" -H "Authorization: Basic ZWdvcjoxMjM0" -d "{ \"id\": \"5\", \"name\" : \"Ekaterinburg\", \"country\" : \"Ural\", \"map\" : \"map\", \"state\" : \"Nevyansk\" }" http://localhost:9000/api/cities

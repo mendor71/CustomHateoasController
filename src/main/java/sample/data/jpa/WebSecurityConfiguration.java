@@ -1,6 +1,7 @@
 package sample.data.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -32,8 +33,8 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 Account account = accountRepository.findByUsername(username);
                 if(account != null) {
-                    return new User(account.getUsername(), account.getPassword(), true, true, true, true,
-                            AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER, ROLE_ADMIN"));
+                    return new User(account.getUsername(), account.getPassword(), account.getEnabled(), account.getAccountNonExpired(), account.getCredentialsNonExpired() , account.getAccountNonLocked(),
+                            AuthorityUtils.commaSeparatedStringToAuthorityList(account.getRole()));
                 } else {
                     throw new UsernameNotFoundException("could not find the user '"
                             + username + "'");
