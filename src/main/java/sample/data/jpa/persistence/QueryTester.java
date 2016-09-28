@@ -2,6 +2,7 @@ package sample.data.jpa.persistence;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import sample.data.jpa.concrete.CityHotelService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,6 +19,9 @@ public class QueryTester {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(unitName);
         EntityManager em = emf.createEntityManager();
+
+        CityHotelService chs = new CityHotelService();
+        chs.initialize(em);
 
         BufferedReader reader =
           new BufferedReader(new InputStreamReader(System.in));

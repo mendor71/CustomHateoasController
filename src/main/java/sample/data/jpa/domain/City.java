@@ -28,19 +28,19 @@ public class City implements Serializable {
 	@Id
 	public Long id;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public String name;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public String state;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public String country;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public String map;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public Long index;
 
 	@OneToMany(targetEntity=Hotel.class, mappedBy="city")
@@ -49,7 +49,7 @@ public class City implements Serializable {
 	protected City() {
 	}
 
-	public City(long id, String name, String country, String map, String state, Long index) {
+	public City(long id, String name, String country, String map, String state, long index) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,48 +59,13 @@ public class City implements Serializable {
 		this.index = index;
 	}
 
-/*	public String toString() {
+	public String toString() {
 		return "sample.data.jpa.domain.City(name=" + this.name + ", state=" + this.state + ", country=" + this.country + ", map=" + this.map + ", index=" + this.index + ")";
-	}*/
+	}
 
 	//setters city's fields
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public void setMap(String map) {
-		this.map = map;
-	}
-
-	public void setIndex(Long index) {
-		this.index = index;
-	}
-
-	//getters city's fields
-	public String getName() {
-		return this.name;
-	}
-
-	public String getState() {return this.state;}
-
-	public String getCountry() {
-		return this.country;
-	}
-
-	public String getMap() {
-		return this.map;
-	}
-
-	public Long getIndex() {
-		return this.index;
 	}
 
 	public Long getId() {
@@ -109,6 +74,42 @@ public class City implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getMap() {
+		return map;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
+	}
+
+	public Long getIndex() {
+		return index;
+	}
+
+	public void setIndex(Long index) {
+		this.index = index;
 	}
 
 	public List<Hotel> getHotels() {
