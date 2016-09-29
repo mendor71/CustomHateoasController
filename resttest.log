@@ -20,6 +20,32 @@ alter table user add constraint UK_ew1hvam8uwaknuaellwhqchhb unique (login)
 alter table hotel add constraint FK_q7pk9j3k5maru0t2blycjbris foreign key (city) references city
 alter table user_role add constraint FK_it77eq964jhfqtu54081ebtio foreign key (role_id) references role
 alter table user_role add constraint FK_apcc8lxk2xnug8377fatvbn04 foreign key (user_id) references user
+INSERT INTO USER VALUES(1,'roy','Roy','spring')
+COMMIT
+INSERT INTO USER VALUES(2,'craig','Craig','spring')
+COMMIT
+INSERT INTO USER VALUES(3,'gregoy','Gregoy','spring')
+COMMIT
+INSERT INTO ROLE VALUES(1,'ROLE_USER')
+COMMIT
+INSERT INTO ROLE VALUES(2,'ROLE_ADMIN')
+COMMIT
+INSERT INTO ROLE VALUES(3,'ROLE_GUEST')
+COMMIT
+INSERT INTO USER_ROLE VALUES(1,1)
+COMMIT
+INSERT INTO USER_ROLE VALUES(1,2)
+COMMIT
+INSERT INTO USER_ROLE VALUES(2,1)
+COMMIT
+INSERT INTO USER_ROLE VALUES(3,1)
+COMMIT
+INSERT INTO ATTRACTIONS VALUES(1,'AustralianTheatreDesc','AustralianTheatre')
+COMMIT
+INSERT INTO ATTRACTIONS VALUES(4,'BridgeDesc','Bridge')
+COMMIT
+INSERT INTO ATTRACTIONS VALUES(10,'BigClock','BigBen')
+COMMIT
 INSERT INTO COFFEE_BAR VALUES(1,'testStreet','the best bar','bar1')
 COMMIT
 INSERT INTO CITY VALUES(1,'country1','map1','city1','state1')
